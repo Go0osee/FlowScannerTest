@@ -47,6 +47,13 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         ScannerApplication.appComponent?.inject(this)
 
         initViews()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        viewModel.resultScan.observe(viewLifecycleOwner) { items ->
+            adapter.submitList(items)
+        }
     }
 
     private fun initViews() {
@@ -54,10 +61,6 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         binding.recycler.apply {
             adapter = this@HistoryFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        viewModel.resultScan.observe(viewLifecycleOwner) { items ->
-            adapter.submitList(items)
         }
 
 

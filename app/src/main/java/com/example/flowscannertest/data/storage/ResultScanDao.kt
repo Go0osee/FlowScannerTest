@@ -5,11 +5,12 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.flowscannertest.data.storage.entity.ResultScanEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ResultScanDao {
     @Query("SELECT * FROM result_scans")
-    suspend fun getAllResultScan(): List<ResultScanEntity>
+    fun getAllResultScan(): Flow<List<ResultScanEntity>>
 
     @Insert
     suspend fun saveResultScan(resultScan: ResultScanEntity)

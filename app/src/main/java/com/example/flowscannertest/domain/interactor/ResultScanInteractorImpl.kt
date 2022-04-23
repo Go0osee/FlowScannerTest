@@ -11,10 +11,6 @@ import kotlinx.coroutines.flow.map
 class ResultScanInteractorImpl(
     private val repository: ResultScanRepository
 ) : ResultScanInteractor {
-    override suspend fun createResultScan(resultScan: ResultScan) {
-        repository.saveResultScan(resultScan.toResultScanEntity())
-    }
-
     override fun getResultScan(): Flow<List<ResultScan>> {
         return repository.getSavedResultScan()
             .map { list ->
@@ -22,6 +18,10 @@ class ResultScanInteractorImpl(
                     resultScanEntity.toResultScan()
                 }
             }
+    }
+
+    override suspend fun createResultScan(resultScan: ResultScan) {
+        repository.saveResultScan(resultScan.toResultScanEntity())
     }
 
     override suspend fun deleteResultScan(resultScan: ResultScan) {

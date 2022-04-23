@@ -13,9 +13,10 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val binding: ActivityMainBinding by viewBinding()
     @Inject
     lateinit var viewModel: MainViewModel
+
+    private val binding: ActivityMainBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

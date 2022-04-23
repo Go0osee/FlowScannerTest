@@ -20,10 +20,10 @@ class MainViewModel @Inject constructor(
     val resultScan: LiveData<List<ResultScan>> get() = _resultScan
 
     init {
-        initStringsFlow()
+        initFlow()
     }
 
-    private fun initStringsFlow() {
+    private fun initFlow() {
         interactor.getResultScan()
             .map { _resultScan.postValue(it) }
             .launchIn(viewModelScope)
